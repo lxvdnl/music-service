@@ -13,6 +13,7 @@
     <url>https://www.lxvdnl.com</url>
     <modules>
         <module>user</module>
+        <module>track</module>
     </modules>
 
     <properties>

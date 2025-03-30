@@ -1,4 +1,4 @@
-package com.lxvdnl.user;
+package com.lxvdnl.track;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,25 +11,25 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tracks")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Track {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
-
-    @Column(nullable = false, unique = true)
-    private String username;
-
     @Column(nullable = false)
-    private String password;
+    private UUID authorId;
+
+    @Column(nullable = false, unique = true)
+    private String title;
+
+    @Column(name = "audio_url", nullable = false, unique = true, length = 512)
+    private String audioUrl;
 
     @CreationTimestamp
     @Column(name = "creation_date", nullable = false)
