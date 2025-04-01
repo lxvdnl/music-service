@@ -1,4 +1,4 @@
-package com.lxvdnl.user;
+package com.lxvdnl.user.web;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,5 +1,6 @@
-package com.lxvdnl.user;
+package com.lxvdnl.user.web;
 
+import com.lxvdnl.user.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
