@@ -5,13 +5,11 @@ import com.lxvdnl.user.exception.UserNotFoundException;
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -54,5 +52,3 @@ public class UserService {
     }
 
 }
-
-// todo: logging

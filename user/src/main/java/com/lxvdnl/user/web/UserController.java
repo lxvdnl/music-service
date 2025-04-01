@@ -19,14 +19,18 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        log.info("Creating user: name={}, username={}", userDto.getName(), userDto.getUsername());
         User newUser = userService.createUser(userMapper.toEntity(userDto));
+        log.info("Successfully created user: id={}, name={}, username={}", newUser.getId(), newUser.getName(), newUser.getUsername());
         return ResponseEntity.ok(userMapper.toDto(newUser));
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("userId") UUID userId) {
+        log.info("Getting user by id: {}", userId);
         User user = userService.getUserById(userId);
+        log.info("Successfully get user by id: id={}, name={}, username={}", user.getId(), user.getName(), user.getUsername());
         return ResponseEntity.ok(userMapper.toDto(user));
     }
 
@@ -34,17 +38,20 @@ public class UserController {
     public ResponseEntity<UserDto> updateUser(@PathVariable("userId") UUID userId, @RequestBody UserDto userDto) {
         User user = userMapper.toEntity(userDto);
         user.setId(userId);
+        log.info("Updating user: id={}, name={}, username={}", user.getId(), user.getName(), user.getUsername());
         User updatedUser = userService.updateUser(user);
+        log.info("Successfully updated user: id={}, name={}, username={}", updatedUser.getId(), updatedUser.getName(), updatedUser.getUsername());
         return ResponseEntity.ok(userMapper.toDto(updatedUser));
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable("userId") UUID userId) {
+        log.info("Deleting user by id: {}", userId);
         userService.deleteUserById(userId);
+        log.info("Successfully deleted user by id: {}", userId);
         return ResponseEntity.noContent().build();
     }
 
 }
 
 // todo: validation
-// todo: logging
