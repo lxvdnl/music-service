@@ -1,4 +1,4 @@
-package com.lxvdnl.user.web;
+package com.lxvdnl.user.web.dto;
 
 import com.lxvdnl.user.model.User;
 import org.springframework.stereotype.Component;

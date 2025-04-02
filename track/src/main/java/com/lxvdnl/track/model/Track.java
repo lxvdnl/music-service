@@ -1,4 +1,4 @@
-package com.lxvdnl.track;
+package com.lxvdnl.track.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

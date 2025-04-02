@@ -1,5 +1,6 @@
-package com.lxvdnl.track;
+package com.lxvdnl.track.web.dto;
 
+import com.lxvdnl.track.model.Track;
 import org.springframework.stereotype.Component;
 
 @Component

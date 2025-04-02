@@ -2,8 +2,10 @@ package com.lxvdnl.user.web;
 
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.service.UserService;
+import com.lxvdnl.user.web.dto.UserDto;
+import com.lxvdnl.user.web.dto.UserMapper;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,7 +17,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequestMapping("/api/v1/users")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
