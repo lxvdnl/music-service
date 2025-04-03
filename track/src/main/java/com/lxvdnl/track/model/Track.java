@@ -25,7 +25,7 @@ public class Track {
     @Column(nullable = false)
     private UUID authorId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String title;
 
     @Column(name = "audio_url", nullable = false, unique = true, length = 512)

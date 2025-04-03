@@ -17,9 +17,7 @@ public class TrackDto {
     @Size(min = 1, max = 50, message = "Title size must be between 1 and 50")
     private String title;
 
-    @NotNull(message = "Audio file can't be null")
-    @Max(value = 10 * 1024 * 1024, message = "Audio file size must be less than 10MB")
-    @Pattern(regexp = ".*\\.(mp3|wav)$", message = "Invalid file format. Only mp3 and wav are allowed")
-    private MultipartFile audioFile;
+    @NotNull(message = "Audio url can't be null")
+    private String audioFileUrl;
 
 }

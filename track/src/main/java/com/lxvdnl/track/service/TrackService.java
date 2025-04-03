@@ -2,31 +2,31 @@ package com.lxvdnl.track.service;
 
 import com.lxvdnl.track.model.Track;
 import com.lxvdnl.track.repository.TrackRepository;
-import com.lxvdnl.track.web.dto.TrackDto;
-import com.lxvdnl.track.web.dto.TrackMapper;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TrackService {
 
     private final TrackRepository trackRepository;
-    private final TrackMapper trackMapper;
+    private final AudioFileUploadService audioFileUploadService;
 
-    public Track createTrack(TrackDto trackDto) {
-        // todo: check for availability in db
-        log.info("New user registration {}", trackDto);
+    public Track createTrack(UUID authorId, String title, MultipartFile audioFile) {
+        // todo: do check for valid authorId from UserService
 
-        Track track = trackMapper.toEntity(trackDto);
+        String url = audioFileUploadService.uploadFile(audioFile);
 
-        // todo: upload audio file to s3 and return url for track
-        // plug
-        track.setAudioUrl("plug");
-
-        return trackRepository.save(track);
+        return trackRepository.save(Track.builder()
+                .authorId(authorId)
+                .title(title)
+                .audioUrl(url)
+                .build());
     }
 
 }

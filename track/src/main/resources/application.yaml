@@ -16,8 +16,9 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: track-service
-      auto-offset-reset: earliest
+
+minio:
+  bucket: audio
+  url: http://localhost:9000
+  accessKey: minioadmin
+  secretKey: minioadmin

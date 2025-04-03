@@ -1,9 +1,9 @@
-package com.lxvdnl.user.web;
+package com.lxvdnl.user.web.controller;
 
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.service.UserService;
 import com.lxvdnl.user.web.dto.UserDto;
-import com.lxvdnl.user.web.dto.UserMapper;
+import com.lxvdnl.user.web.mapper.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,7 @@
-package com.lxvdnl.user.web.dto;
+package com.lxvdnl.user.web.mapper;
 
 import com.lxvdnl.user.model.User;
+import com.lxvdnl.user.web.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 @Component
