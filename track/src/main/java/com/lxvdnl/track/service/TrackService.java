@@ -5,6 +5,7 @@ import com.lxvdnl.track.repository.TrackRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
@@ -17,6 +18,7 @@ public class TrackService {
     private final TrackRepository trackRepository;
     private final AudioFileUploadService audioFileUploadService;
 
+    @Transactional
     public Track createTrack(UUID authorId, String title, MultipartFile audioFile) {
         // todo: do check for valid authorId from UserService
 

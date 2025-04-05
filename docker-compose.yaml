@@ -30,26 +30,23 @@ services:
     restart: unless-stopped
 
   minio:
-    image: minio/minio:latest
     container_name: minio
+    image: minio/minio:latest
     environment:
       - MINIO_ROOT_USER=${MINIO_ACCESS_KEY}
       - MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY}
-    command: server ~/minio --console-address :9090
+    command: server /data/minio --console-address :9090
     ports:
       - '9090:9090'
       - '9000:9000'
     volumes:
-      - minio-data:/minio
+      - minio-data:/data/minio
 
 networks:
   postgres:
-    driver: bridge
-  kafka:
     driver: bridge
 
 volumes:
   postgres:
   pgadmin:
   minio-data:
-    driver: local

@@ -26,18 +26,18 @@ public class AudioFileUploadService {
         try {
             createBucket();
         } catch (Exception e) {
-            throw new UploadException("Audio file upload failed");
+            throw new UploadException("Audio file upload failed 1");
         }
 
         if (audioFile.isEmpty() || audioFile.getOriginalFilename() == null) {
-            throw new UploadException("Audio file upload failed");
+            throw new UploadException("Audio file upload failed 2");
         }
         String fileName = generateFileName(audioFile);
         InputStream inputStream;
         try {
             inputStream = audioFile.getInputStream();
         } catch (Exception e) {
-            throw new UploadException("Audio file upload failed");
+            throw new UploadException("Audio file upload failed 3");
         }
         saveAudio(inputStream, fileName);
         return fileName;
@@ -57,7 +57,7 @@ public class AudioFileUploadService {
 
     private String generateFileName(MultipartFile audioFile) {
         String extension = getExtension(audioFile);
-        return UUID.randomUUID().toString() + "." + extension;
+        return UUID.randomUUID() + "." + extension;
     }
 
     private String getExtension(MultipartFile audioFile) {
