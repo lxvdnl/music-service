@@ -22,7 +22,9 @@ public class TrackService {
     public Track createTrack(UUID authorId, String title, MultipartFile audioFile) {
         // todo: do check for valid authorId from UserService
 
+        log.info("Download new file: {}", audioFile.getOriginalFilename());
         String url = audioFileUploadService.uploadFile(audioFile);
+        log.info("File downloaded: {}", url);
 
         return trackRepository.save(Track.builder()
                 .authorId(authorId)

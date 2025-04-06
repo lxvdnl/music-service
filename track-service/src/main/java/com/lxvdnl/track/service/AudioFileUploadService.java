@@ -26,18 +26,18 @@ public class AudioFileUploadService {
         try {
             createBucket();
         } catch (Exception e) {
-            throw new UploadException("Audio file upload failed 1");
+            throw new UploadException("Failed to create bucket for audio upload");
         }
 
         if (audioFile.isEmpty() || audioFile.getOriginalFilename() == null) {
-            throw new UploadException("Audio file upload failed 2");
+            throw new UploadException("Empty or invalid audio file");
         }
         String fileName = generateFileName(audioFile);
         InputStream inputStream;
         try {
             inputStream = audioFile.getInputStream();
         } catch (Exception e) {
-            throw new UploadException("Audio file upload failed 3");
+            throw new UploadException("Failed to read audio file stream");
         }
         saveAudio(inputStream, fileName);
         return fileName;

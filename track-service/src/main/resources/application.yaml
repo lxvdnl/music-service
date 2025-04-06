@@ -5,7 +5,7 @@ spring:
   application:
     name: track
   datasource:
-    url: jdbc:postgresql://localhost:5432/track
+    url: jdbc:postgresql://postgres:5432/track
     username: postgres
     password: 1254
   jpa:
@@ -19,6 +19,6 @@ spring:
 
 minio:
   bucket: audio
-  url: http://localhost:9000
+  url: http://minio:9000
   accessKey: minioadmin
   secretKey: minioadmin

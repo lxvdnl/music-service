@@ -1,4 +1,35 @@
 services:
+  user-service:
+    container_name: user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/user
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1254
+    restart: unless-stopped
+
+  track-service:
+    container_name: track-service
+    build:
+      context: ./track-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - postgres
+      - minio
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/track
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1254
+    restart: unless-stopped
+
   postgres:
     container_name: postgres
     image: postgres
@@ -39,11 +70,15 @@ services:
     ports:
       - '9090:9090'
       - '9000:9000'
+    networks:
+      - minio
     volumes:
       - minio-data:/data/minio
 
 networks:
   postgres:
+    driver: bridge
+  minio:
     driver: bridge
 
 volumes:
