@@ -1,4 +1,4 @@
-package com.lxvdnl.user.web.controller;
+package com.lxvdnl.user.unit.web.controller;
 
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.service.UserService;

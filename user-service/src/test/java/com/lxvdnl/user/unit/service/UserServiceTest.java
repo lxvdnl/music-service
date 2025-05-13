@@ -1,9 +1,10 @@
-package com.lxvdnl.user.service;
+package com.lxvdnl.user.unit.service;
 
 import com.lxvdnl.user.exception.UserAlreadyExistsException;
 import com.lxvdnl.user.exception.UserNotFoundException;
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.repository.UserRepository;
+import com.lxvdnl.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

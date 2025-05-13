@@ -1,7 +1,8 @@
-package com.lxvdnl.user.web.mapper;
+package com.lxvdnl.user.unit.web.mapper;
 
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.web.dto.UserDto;
+import com.lxvdnl.user.web.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
