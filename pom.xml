@@ -12,8 +12,8 @@
     <name>music-service</name>
     <url>https://www.lxvdnl.com</url>
     <modules>
-        <module>user</module>
-        <module>track</module>
+        <module>user-service</module>
+        <module>track-service</module>
     </modules>
 
     <properties>
@@ -44,12 +44,6 @@
             <version>${lombok.dependency.version}</version>
             <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -60,7 +54,24 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.maven.plugin.version}</version>
                 </plugin>
+
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.dependency.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
 </project>

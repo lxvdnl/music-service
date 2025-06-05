@@ -1,10 +1,41 @@
 services:
+  user-service:
+    container_name: user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=${USER_DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${USER_DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${USER_DB_PASSWORD}
+    restart: unless-stopped
+
+  track-service:
+    container_name: track-service
+    build:
+      context: ./track-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - postgres
+      - minio
+    environment:
+      - SPRING_DATASOURCE_URL=${TRACK_DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${TRACK_DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${TRACK_DB_PASSWORD}
+    restart: unless-stopped
+
   postgres:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1254
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -18,8 +49,8 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "alexseev_dnl@mail.ru"
-      PGADMIN_DEFAULT_PASSWORD: 1254
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
       - pgadmin:/var/lib/pgadmin
@@ -39,11 +70,15 @@ services:
     ports:
       - '9090:9090'
       - '9000:9000'
+    networks:
+      - minio
     volumes:
       - minio-data:/data/minio
 
 networks:
   postgres:
+    driver: bridge
+  minio:
     driver: bridge
 
 volumes:
