@@ -2,6 +2,7 @@ package com.lxvdnl.user.web.controller;
 
 import com.lxvdnl.user.exception.UserAlreadyExistsException;
 import com.lxvdnl.user.exception.UserNotFoundException;
+import com.lxvdnl.user.logging.AppLogger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 @RestControllerAdvice
 public class UserAdvice {
+
+    private static final AppLogger log = AppLogger.getLogger(UserAdvice.class);
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFound(UserNotFoundException e) {
