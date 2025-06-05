@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: track
+  datasource:
+    url: jdbc:postgresql://localhost:5432/track
+    username: postgres
+    password: 1254
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+minio:
+  bucket: audio
+  url: http://localhost:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
