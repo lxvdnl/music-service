@@ -1,6 +1,5 @@
 package com.lxvdnl.user.web.controller;
 
-import com.lxvdnl.user.logging.AppLogger;
 import com.lxvdnl.user.model.User;
 import com.lxvdnl.user.service.UserService;
 import com.lxvdnl.user.web.dto.UserDto;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Slf4j
 @Validated
 @RestController
 @RequestMapping("/api/v1/users")
@@ -22,7 +22,6 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
-    private static final AppLogger log = AppLogger.getLogger(UserController.class);
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
