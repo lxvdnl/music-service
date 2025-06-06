@@ -1,6 +1,7 @@
 package com.lxvdnl.track.service;
 
 import com.lxvdnl.track.exception.TrackNotFoundException;
+import com.lxvdnl.track.exception.UserNotFoundException;
 import com.lxvdnl.track.model.Track;
 import com.lxvdnl.track.repository.TrackRepository;
 import com.lxvdnl.track.web.dto.TrackDto;
@@ -29,7 +30,7 @@ public class TrackService {
         try {
             restTemplate.getForObject("http://user-service:8080/api/v1/users/{authorId}", Object.class, authorId);
         } catch (HttpClientErrorException.NotFound e) {
-            throw new IllegalArgumentException("User with id " + authorId + " not found");
+            throw new UserNotFoundException("User with id " + authorId + " not found");
         }
 
         log.info("Download new file: {}", audioFile.getOriginalFilename());
