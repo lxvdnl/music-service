@@ -4,6 +4,8 @@ import com.lxvdnl.track.model.Track;
 import com.lxvdnl.track.web.dto.TrackDto;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class TrackMapper {
 
@@ -19,6 +21,12 @@ public class TrackMapper {
                 .title(trackDto.getTitle())
                 .audioUrl(trackDto.getAudioFileUrl())
                 .build();
+    }
+
+    public List<TrackDto> toDtoList(List<Track> tracks) {
+        return tracks.stream()
+                .map(this::toDto)
+                .toList();
     }
 
 }
