@@ -1,0 +1,25 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: logging
+  datasource:
+    url: jdbc:postgresql://localhost:5432/logging
+    username: postgres
+    password: 1254
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: logging-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

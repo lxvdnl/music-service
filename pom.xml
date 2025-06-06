@@ -14,6 +14,7 @@
     <modules>
         <module>user</module>
         <module>track</module>
+        <module>logging</module>
     </modules>
 
     <properties>
@@ -49,6 +50,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
     </dependencies>
 
