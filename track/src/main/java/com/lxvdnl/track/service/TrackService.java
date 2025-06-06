@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -20,10 +22,15 @@ public class TrackService {
 
     private final TrackRepository trackRepository;
     private final AudioFileUploadService audioFileUploadService;
+    private final RestTemplate restTemplate;
 
     @Transactional
     public Track createTrack(UUID authorId, String title, MultipartFile audioFile) {
-        // todo: do check for valid authorId from UserService
+        try {
+            restTemplate.getForObject("http://user-service:8080/api/v1/users/{authorId}", Object.class, authorId);
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new IllegalArgumentException("User with id " + authorId + " not found");
+        }
 
         log.info("Download new file: {}", audioFile.getOriginalFilename());
         String url = audioFileUploadService.uploadFile(audioFile);
