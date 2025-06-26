@@ -1,0 +1,28 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/v1/users/**
+        - id: track-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/tracks/**
+        - id: auth-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/auth/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+jwt:
+  secret: jRtuURMG37beZ8wSYZ1avaSbQZmiILHB

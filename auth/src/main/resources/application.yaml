@@ -19,3 +19,7 @@ spring:
 
 jwt:
   secret: jRtuURMG37beZ8wSYZ1avaSbQZmiILHB
+
+logging:
+  level:
+    org.springframework.security: DEBUG

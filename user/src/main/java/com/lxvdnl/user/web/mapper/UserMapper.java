@@ -11,15 +11,14 @@ public class UserMapper {
         return User.builder()
                 .name(userDto.getName())
                 .username(userDto.getUsername())
-                .password(userDto.getPassword())
                 .build();
     }
 
     public UserDto toDto(User user) {
         return UserDto.builder()
+                .id(user.getId())
                 .name(user.getName())
                 .username(user.getUsername())
-                .password(user.getPassword())
                 .build();
     }
 

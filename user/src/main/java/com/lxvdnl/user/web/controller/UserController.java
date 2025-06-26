@@ -27,7 +27,9 @@ public class UserController {
     private final KafkaLogProducer kafkaLogProducer;
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto,
+                                              @RequestHeader("X-User-Email") String email) {
+        userDto.setUsername(email);
         log.info("Creating user: name={}, username={}", userDto.getName(), userDto.getUsername());
         User newUser = userService.createUser(userMapper.toEntity(userDto));
         log.info("Successfully created user: id={}, name={}, username={}", newUser.getId(), newUser.getName(), newUser.getUsername());
@@ -52,7 +54,10 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable("userId") UUID userId, @Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable("userId") UUID userId,
+                                              @Valid @RequestBody UserDto userDto,
+                                              @RequestHeader("X-User-Email") String email) {
+        userDto.setUsername(email);
         User user = userMapper.toEntity(userDto);
         user.setId(userId);
         log.info("Updating user: id={}, name={}, username={}", user.getId(), user.getName(), user.getUsername());

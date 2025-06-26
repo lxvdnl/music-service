@@ -34,9 +34,13 @@ public class UserService {
     public User updateUser(User user) {
         return userRepository.findById(user.getId())
                 .map(existingUser -> {
+                    if (!existingUser.getUsername().equals(user.getUsername())) {
+                        userRepository.findByUsername(user.getUsername()).ifPresent(conflictUser -> {
+                            throw new UserAlreadyExistsException("User with username " + user.getUsername() + " already exists");
+                        });
+                    }
                     existingUser.setName(user.getName());
                     existingUser.setUsername(user.getUsername());
-                    existingUser.setPassword(user.getPassword());
                     return userRepository.save(existingUser);
                 })
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + user.getId() + " not found"));

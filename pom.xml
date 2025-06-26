@@ -16,6 +16,7 @@
         <module>track</module>
         <module>logging</module>
         <module>auth</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
