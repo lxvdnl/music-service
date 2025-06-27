@@ -34,7 +34,6 @@ public class UserServiceTest {
         User user = User.builder()
                 .username("testUsername")
                 .name("testName")
-                .password("testPassword")
                 .creationDate(LocalDateTime.now())
                 .id(UUID.randomUUID())
                 .build();

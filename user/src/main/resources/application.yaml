@@ -4,20 +4,6 @@ server:
 spring:
   application:
     name: user
-  datasource:
-    url: jdbc:postgresql://localhost:5432/user
-    username: postgres
-    password: 1254
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  config:
+    import: optional:configserver:http://localhost:8888

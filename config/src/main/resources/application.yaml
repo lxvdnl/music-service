@@ -1,0 +1,31 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config
+
+  profiles:
+    active: vault
+
+  cloud:
+    config:
+      server:
+        vault:
+          host: localhost
+          port: 8200
+          backend: secret
+          kvVersion: 2
+          token: root
+          scheme: http
+          profileSeparator: /
+          order: 1
+          token-provider: static
+
+  vault:
+    host: localhost
+    port: 8200
+    scheme: http
+    authentication: TOKEN
+    token: root
+    kv-version: 2
